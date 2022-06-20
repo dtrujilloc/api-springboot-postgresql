@@ -19,19 +19,22 @@ public class UserService {
 //        List<UserDto> userDtoList = userFacade.getAllUser();
 //        log.info("<<< End method getAllUser");
 //        return userDtoList;
-        UserDto userDto = new UserDto();
-        userDto.setUserId("userId1");
-        userDto.setName("userName1");
+
         List<UserDto> userDtoList = new ArrayList<>();
-        userDtoList.add(userDto);
+        userDtoList.add(buildUser());
         return userDtoList;
     }
 
     public UserDto saveUser(UserDto data) {
 //        UserDto userDto = userFacade.saveUser(data);
+
+        return buildUser();
+    }
+
+    private UserDto buildUser() {
         UserDto userDto = new UserDto();
-        userDto.setUserId("userId1");
-        userDto.setName("userName1");
+        userDto.setUserId("userId1.1");
+        userDto.setName("userName1.1");
         return userDto;
     }
 }
