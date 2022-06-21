@@ -1,26 +1,29 @@
-version: '3'
+version: '3.8'
 
 services:
-  db:
-    container_name: db
-    image: mysql:5.7.25
-    ports:
-      - "3307:3306"
-    environment:
-      MYSQL_DATABASE: morgana
-      MYSQL_ROOT_PASSWORD: root
   app:
-    image: app
-    restart: always
+    image: 'app'
     build:
-      context: ./
-      dockerfile: Dockerfile
-    ports:
-      - "8081:8080"
+      context: .
+    container_name: app
+    depends_on:
+      - db
     environment:
-      MYSQL_HOST: db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_PORT: 3306
-#    depends_on:
-#      - db
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/morgana
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_SHOW_SQL=true
+    ports:
+      - 8080:8080
+
+  db:
+    image: 'postgres'
+    container_name: db
+    restart: always
+    environment:
+      - POSTGRES_DB=morgana
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+    ports:
+      - 5432:5432
