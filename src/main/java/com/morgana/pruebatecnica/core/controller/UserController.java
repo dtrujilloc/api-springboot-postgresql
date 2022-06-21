@@ -19,15 +19,20 @@ public class UserController {
     @GetMapping
     public List<UserDto> getAllUser() {
         log.info(">>> Start endpoint getAllUser");
+
         List<UserDto> userDtoList = userService.getAllUser();
+
         log.info("<<< End endpoint getAllUser");
         return userDtoList;
     }
 
     @PostMapping
     public UserDto saveUser(@RequestBody UserDto data) {
+        log.info(">>> Start endpoint saveUser");
+
         UserDto userDto = userService.saveUser(data);
 
+        log.info("<<< End endpoint saveUser");
         return userDto;
     }
 }
