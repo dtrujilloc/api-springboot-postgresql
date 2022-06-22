@@ -94,9 +94,11 @@ public class UserService {
             }
         } catch (TransientPropertyValueException ex) {
             log.error("Error, se esta intentando guardar un id de un amigo que no existe en la tabla de usuario -> friendIds:{}", friends);
+            userFacade.deleteUser(userId);
             throw new Exception("Error al tratar de guardar los friends del usuario");
         } catch (Exception ex) {
             log.error("Error desconocido -> ex:{}", ex.getMessage());
+            userFacade.deleteUser(userId);
             throw new Exception("Error desconocidog al tratar de guardar los friends del usuario");
         }
 

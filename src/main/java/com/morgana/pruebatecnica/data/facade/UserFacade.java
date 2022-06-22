@@ -46,4 +46,8 @@ public class UserFacade {
         log.info("<<< End method saveUser -> userDto:{}", userDto);
         return userDto;
     }
+
+    public void deleteUser(String userId) {
+        userRepository.deleteById(userId);
+    }
 }
