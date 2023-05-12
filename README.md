@@ -1,4 +1,4 @@
-# Prueba Tecnica Morgana
+# Prueba Tecnica
 ### Descripcion
 El presente repositorio contiene el desarrollo de una API-REST desarrollada en spring-boot con persistencia de informacion en una BD de postgresql. Los dos servicios, tanto el aplicativo en spring-boot y la BD, estan dockerizados por medio de docker-compose para una despliegue y ejecucion mas rapido.
 
